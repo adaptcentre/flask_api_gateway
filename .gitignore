@@ -1,0 +1,99 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Flask environment variables
+.env
+*.env
+*.env.*
+
+# PyCharm project files
+.idea/
+*.iml
+
+# Virtual environments
+venv/
+.venv/
+env/
+ENV/
+
+# macOS specific
+.DS_Store
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+coverage.*
+.cache
+nosetests.xml
+pytest_cache/
+.pytest_cache/
+
+# Python-specific logs and data
+*.log
+*.pot
+*.mo
+*.pyc
+
+# Distribution / packaging
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# pip
+pip-log.txt
+pip-delete-this-directory.txt
+
+# mypy
+.mypy_cache/
+
+# pyre type checker
+.pyre/
+
+# pytype
+.pytype/
+
+# pyright
+typings/
+
+# VS Code settings (optional, if you or your team uses VS Code too)
+.vscode/
+
+# Jupyter Notebook Checkpoints
+.ipynb_checkpoints/
+
+# Local SQLite DBs (if any)
+*.sqlite3
+*.db
+
+# Flask specific
+instance/
+*.pid
+*.log
+*.sqlite
+*.db
+
+# Ignore backup files
+*~
+*.bak
+*.swp
+
+# Ignore wheel files
+*.whl
+
+# Ignore compiled objects
+*.so

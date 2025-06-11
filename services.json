@@ -1,0 +1,3 @@
+[
+  {"name":  "auth_service", "redirect_url": "http://127.0.0.1:5000", "slug": "paradise", "protected_key": "p_" }
+]
