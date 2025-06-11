@@ -37,30 +37,34 @@ def forward_request(service_url):
         if request.method == 'POST':
             # Extract form fields
             form_data = request.form.to_dict()
-            # Extract files (Read files properly)
-            files = {
-                key: (file.filename, file.read(), file.mimetype)
-                for key, file in request.files.items()
-            }
+            if "multipart/form-data" in request.content_type :
+                if  request.files:
+                # Extract files (Read files properly)
+                    files = {
+                        key: (file.filename, file.read(), file.mimetype)
+                        for key, file in request.files.items()
+                    }
+                else:
+                    files = [(k, (None, v)) for k, v in form_data.items()]
+                    form_data = None
 
-            # Forward the request using httpx (Synchronous)
-            with httpx.Client() as client:
-                response = client.post(
-                    url=f"{service_url}{path}",
+                    # Forward the request using httpx (Synchronous)
+                with httpx.Client() as client:
+                    response = client.post(
+                        url=f"{service_url}{path}",
+                        params=request.args,
+                        headers=request.headers,
+                        data=form_data,  # Send form fields
+                        files=files,  # Send uploaded files
+                    )
+            else:
+                response = requests.request(
+                    method=request.method,
+                    url=service_url + path,
+                    headers=headers,
                     params=request.args,
-                    headers=request.headers,
-                    data=form_data,  # Send form fields
-                    files=files,  # Send uploaded files
-                )
-
-            # response = requests.request(
-            #     method=request.method,
-            #     url=service_url + path,
-            #     headers=headers,
-            #     params=request.args,
-            #     data=form_data,
-            #     files=files
-            # )
+                    data=form_data
+                )# Send form fields
         return jsonify(response.json()), response.status_code
     except Exception as e:
         logger.error(str(e))
